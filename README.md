@@ -29,41 +29,41 @@ Aplikasi REST API sederhana untuk manajemen buku menggunakan Go, Gin Framework, 
 - **UUID** - Unique identifier generation
 
 ## 📁 Struktur Folder
-workshop-pit/
-`├──` cmd/
-`│ └──` app/
-`│ └──` main.go # Entry point aplikasi
-`├──` entity/ # Database entities (GORM models)
-`│ ├──` book.go
-`│ ├──` loan.go
-`│ └──` user.go
-`├──` internal/
-`│ ├──` handler/
-`│ │ └──` rest/ # REST API handlers (Controller layer)
-`│ │ ├──` rest.go # Router setup dan server initialization
-`│ │ └──` book.go # Book endpoints handlers
-`│ ├──` repository/ # Repository layer (Data access)
-`│ │ ├──` repository.go # Repository aggregator
-`│ │ └──` book.go # Book repository implementation
-`│ └──` service/ # Service layer (Business logic)
-`│ ├──` service.go # Service aggregator
-`│ └──` book.go # Book service implementation
-`├──` model/ # Request/Response DTOs
-`│ └──` book.go
-`├──` pkg/
-`│ ├──` config/ # Configuration management
-`│ │ ├──` config.go # Environment loader
-`│ │ └──` database.go # Database connection string builder
-`│ ├──` database/
-`│ │ └──` mariadb/ # Database connection & migration
-`│ │ ├──` mariadb.go
-`│ │ └──` migrate.go
-`│ └──` response/ # Standard API response format
-`│ └──` response.go
-`├──` .env # Environment variables (jangan commit!)
-`├──` .env.example # Template environment variables
-`├──` go.mod # Go module dependencies
-`└──` README.md
+`workshop-pit/
+├── cmd/
+│ └── app/
+│ └── main.go # Entry point aplikasi
+├── entity/ # Database entities (GORM models)
+│ ├── book.go
+│ ├── loan.go
+│ └── user.go
+├── internal/
+│ ├── handler/
+│ │ └── rest/ # REST API handlers (Controller layer)
+│ │ ├── rest.go # Router setup dan server initialization
+│ │ └── book.go # Book endpoints handlers
+│ ├── repository/ # Repository layer (Data access)
+│ │ ├── repository.go # Repository aggregator
+│ │ └── book.go # Book repository implementation
+│ └── service/ # Service layer (Business logic)
+│ ├── service.go # Service aggregator
+│ └── book.go # Book service implementation
+├── model/ # Request/Response DTOs
+│ └── book.go
+├── pkg/
+│ ├── config/ # Configuration management
+│ │ ├── config.go # Environment loader
+│ │ └── database.go # Database connection string builder
+│ ├── database/
+│ │ └── mariadb/ # Database connection & migration
+│ │ ├── mariadb.go
+│ │ └── migrate.go
+│ └── response/ # Standard API response format
+│ └── response.go
+├── .env # Environment variables (jangan commit!)
+├── .env.example # Template environment variables
+├── go.mod # Go module dependencies
+└── README.md`
 
 ### Penjelasan Layer
 
