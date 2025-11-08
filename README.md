@@ -111,7 +111,7 @@ go mod download
 
 3. **Setup environment variables**   
 Copy file `.env.example` menjadi `.env`:
-cp .env.example .env
+```cp .env.example .env```
 Kemudian edit file `.env` sesuai dengan konfigurasi database Anda:
 
 ```    
