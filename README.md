@@ -126,8 +126,7 @@ CREATE DATABASE workshop_pit;
 
 5. **Jalankan aplikasi**
 go run cmd/app/main.go
-Aplikasi akan berjalan di `http://localhost:8080` (sesuai konfigurasi PORT di .env)
-   
+Aplikasi akan berjalan di `http://localhost:8080` (sesuai konfigurasi PORT di .env) 
 Auto migration akan dijalankan otomatis saat aplikasi start.
 
 6. **Test API**
