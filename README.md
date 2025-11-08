@@ -100,10 +100,14 @@ workshop-pit/
 
 1. **Clone repository**
 git clone <repository-url>
+```
 cd workshop-pit
+```
 
 2. **Install dependencies**
+```
 go mod download
+```
 
 3. **Setup environment variables**   
 Copy file `.env.example` menjadi `.env`:
@@ -127,7 +131,9 @@ CREATE DATABASE workshop_pit;
 ```
 
 5. **Jalankan aplikasi**
+```
 go run cmd/app/main.go
+```
 Aplikasi akan berjalan di `http://localhost:8080` (sesuai konfigurasi PORT di .env). 
 Auto migration akan dijalankan otomatis saat aplikasi start.
 
