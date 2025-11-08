@@ -122,7 +122,9 @@ PORT=8080
 ```
  4. **Buat database**   
 Buat database baru di MariaDB/MySQL:
+```
 CREATE DATABASE workshop_pit;
+```
 
 5. **Jalankan aplikasi**
 go run cmd/app/main.go
