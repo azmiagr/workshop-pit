@@ -294,6 +294,11 @@ Base URL: `http://localhost:8080/api/v1`
 
 ## 🔧 Development
 
+### Run aplikasi
+```
+go run cmd/app/main.go
+```
+
 ### Build aplikasi
 ```
 go build -o bin/app cmd/app/main.go
