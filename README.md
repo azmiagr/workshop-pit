@@ -286,11 +286,16 @@ Base URL: `http://localhost:8080/api/v1`
 ## 🔧 Development
 
 ### Build aplikasi
+```
 go build -o bin/app cmd/app/main.go
+```
 
 ### Run binary
-./bin/app## 📄 License
+```
+./bin/app
+```
 
+## 📄 License
 This project is for educational purposes (Workshop PIT).
 
 ## 👥 Contributors
