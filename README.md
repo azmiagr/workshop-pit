@@ -99,37 +99,39 @@ workshop-pit/
 ### Langkah-langkah
 
 1. **Clone repository**
+git clone <repository-url>
+cd workshop-pit
+
+2. **Install dependencies**
+go mod download
+
+3. **Setup environment variables**   
+Copy file `.env.example` menjadi `.env`:
+cp .env.example .env
+Kemudian edit file `.env` sesuai dengan konfigurasi database Anda:
+
+```    
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=root
+DB_PASSWORD=your_password
+DB_NAME=workshop_pit
+
+ADDRESS=localhost
+PORT=8080
+```
+ 4. **Buat database**   
+Buat database baru di MariaDB/MySQL:
+CREATE DATABASE workshop_pit;
+
+5. **Jalankan aplikasi**
+go run cmd/app/main.go
+Aplikasi akan berjalan di `http://localhost:8080` (sesuai konfigurasi PORT di .env)
    
-   git clone <repository-url>
-   cd workshop-pit
-   2. **Install dependencies**
-   go mod download
-   3. **Setup environment variables**
-   
-   Copy file `.env.example` menjadi `.env`:
-   cp .env.example .env
-      Kemudian edit file `.env` sesuai dengan konfigurasi database Anda:
-   DB_HOST=localhost
-   DB_PORT=3306
-   DB_USER=root
-   DB_PASSWORD=your_password
-   DB_NAME=workshop_pit
-   
-   ADDRESS=localhost
-   PORT=8080
-   4. **Buat database**
-   
-   Buat database baru di MariaDB/MySQL:
-   CREATE DATABASE workshop_pit;
-   5. **Jalankan aplikasi**
-   go run cmd/app/main.go
-      Aplikasi akan berjalan di `http://localhost:8080` (sesuai konfigurasi PORT di .env)
-   
-   Auto migration akan dijalankan otomatis saat aplikasi start.
+Auto migration akan dijalankan otomatis saat aplikasi start.
 
 6. **Test API**
-   
-   Gunakan Postman, cURL, atau tools lainnya untuk test API endpoints.
+Gunakan Postman, cURL, atau tools lainnya untuk test API endpoints.
 
 ## 📡 API Endpoints
 
@@ -151,6 +153,7 @@ Base URL: `http://localhost:8080/api/v1`
 **POST** `/api/v1/book/create-book`
 
 **Request Body:**
+```
 {
   "title": "Clean Code",
   "author": "Robert C. Martin",
@@ -159,7 +162,10 @@ Base URL: `http://localhost:8080/api/v1`
   "isbn": "978-0132350884",
   "stock": 10,
   "description": "A Handbook of Agile Software Craftsmanship"
-}**Response (201 Created):**
+}
+```
+**Response (201 Created):**
+```
 {
   "status": "success",
   "message": "Book created successfully",
@@ -175,10 +181,14 @@ Base URL: `http://localhost:8080/api/v1`
     "created_at": "2025-11-08T10:30:00Z",
     "updated_at": "2025-11-08T10:30:00Z"
   }
-}### 2. Get All Books
+}
+```
+
+### 2. Get All Books
 **GET** `/api/v1/book/get-all-books`
 
 **Response (200 OK):**
+```
 {
   "status": "success",
   "message": "Books fetched successfully",
@@ -191,10 +201,14 @@ Base URL: `http://localhost:8080/api/v1`
       "year": 2008
     }
   ]
-}### 3. Get Book By ID
+}
+```
+
+### 3. Get Book By ID
 **GET** `/api/v1/book/get-book-by-id/550e8400-e29b-41d4-a716-446655440000`
 
 **Response (200 OK):**
+```
 {
   "status": "success",
   "message": "Book fetched successfully",
@@ -208,10 +222,14 @@ Base URL: `http://localhost:8080/api/v1`
     "stock": 10,
     "description": "A Handbook of Agile Software Craftsmanship"
   }
-}### 4. Update Book
+}
+```
+
+### 4. Update Book
 **PUT** `/api/v1/book/update-book/550e8400-e29b-41d4-a716-446655440000`
 
 **Request Body:**
+```
 {
   "title": "Clean Code - Updated",
   "author": "Robert C. Martin",
@@ -220,7 +238,11 @@ Base URL: `http://localhost:8080/api/v1`
   "isbn": "978-0132350884",
   "stock": 15,
   "description": "A Handbook of Agile Software Craftsmanship - Updated Edition"
-}**Response (200 OK):**
+}
+```
+
+**Response (200 OK):**
+```
 {
   "status": "success",
   "message": "Book updated successfully",
@@ -236,31 +258,44 @@ Base URL: `http://localhost:8080/api/v1`
     "created_at": "2025-11-08T10:30:00Z",
     "updated_at": "2025-11-08T11:00:00Z"
   }
-}### 5. Delete Book
+}
+```
+
+### 5. Delete Book
 **DELETE** `/api/v1/book/delete-book/550e8400-e29b-41d4-a716-446655440000`
 
 **Response (200 OK):**
+```
 {
   "status": "success",
   "message": "Book deleted successfully",
   "data": null
-}### Error Response
+}
+```
+
+### Error Response
 **Response (400/500):**
+```
 {
   "status": "error",
   "message": "Failed to create book",
   "error": "error details here"
-}## 🔧 Development
+}
+```
+
+## 🔧 Development
 
 ### Build aplikasi
-go build -o bin/app cmd/app/main.go### Run binary
+go build -o bin/app cmd/app/main.go
+
+### Run binary
 ./bin/app## 📄 License
 
 This project is for educational purposes (Workshop PIT).
 
 ## 👥 Contributors
 
-- Your Name
+- Azmi Al Ghifari Rahman
 
 ---
 Dibuat dengan ❤️ untuk Workshop PIT
