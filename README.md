@@ -29,7 +29,8 @@ Aplikasi REST API sederhana untuk manajemen buku menggunakan Go, Gin Framework, 
 - **UUID** - Unique identifier generation
 
 ## 📁 Struktur Folder
-`workshop-pit/
+```
+workshop-pit/
 ├── cmd/
 │ └── app/
 │ └── main.go # Entry point aplikasi
@@ -63,7 +64,8 @@ Aplikasi REST API sederhana untuk manajemen buku menggunakan Go, Gin Framework, 
 ├── .env # Environment variables (jangan commit!)
 ├── .env.example # Template environment variables
 ├── go.mod # Go module dependencies
-└── README.md`
+└── README.md
+```
 
 ### Penjelasan Layer
 
