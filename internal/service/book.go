@@ -19,14 +19,14 @@ type IBookService interface {
 }
 
 type BookService struct {
-	db         *gorm.DB
-	repository *repository.Repository
+	db             *gorm.DB
+	bookRepository repository.IBookRepository
 }
 
-func NewBookService(repository *repository.Repository) IBookService {
+func NewBookService(bookRepository repository.IBookRepository) IBookService {
 	return &BookService{
-		db:         mariadb.Connection,
-		repository: repository,
+		db:             mariadb.Connection,
+		bookRepository: bookRepository,
 	}
 }
 
@@ -50,7 +50,7 @@ func (s *BookService) CreateBook(param model.BookRequest) (*model.BookResponse, 
 		Description: param.Description,
 	}
 
-	err = s.repository.BookRepository.CreateBook(tx, book)
+	err = s.bookRepository.CreateBook(tx, book)
 	if err != nil {
 		return nil, err
 	}
@@ -77,7 +77,7 @@ func (s *BookService) CreateBook(param model.BookRequest) (*model.BookResponse, 
 func (s *BookService) GetAllBooks() ([]*model.BookResponse, error) {
 	var response []*model.BookResponse
 
-	books, err := s.repository.BookRepository.GetAllBooks(s.db)
+	books, err := s.bookRepository.GetAllBooks(s.db)
 	if err != nil {
 		return nil, err
 	}
@@ -96,7 +96,7 @@ func (s *BookService) GetAllBooks() ([]*model.BookResponse, error) {
 }
 
 func (s *BookService) GetBookByID(id string) (*model.BookResponse, error) {
-	book, err := s.repository.BookRepository.GetBookByID(s.db, id)
+	book, err := s.bookRepository.GetBookByID(s.db, id)
 	if err != nil {
 		return nil, err
 	}
@@ -117,7 +117,7 @@ func (s *BookService) UpdateBook(id string, param model.BookUpdateRequest) (*mod
 	tx := s.db.Begin()
 	defer tx.Rollback()
 
-	book, err := s.repository.BookRepository.GetBookByID(s.db, id)
+	book, err := s.bookRepository.GetBookByID(s.db, id)
 	if err != nil {
 		return nil, err
 	}
@@ -130,7 +130,7 @@ func (s *BookService) UpdateBook(id string, param model.BookUpdateRequest) (*mod
 	book.Stock = param.Stock
 	book.Description = param.Description
 
-	err = s.repository.BookRepository.UpdateBook(tx, book)
+	err = s.bookRepository.UpdateBook(tx, book)
 	if err != nil {
 		return nil, err
 	}
@@ -158,7 +158,7 @@ func (s *BookService) DeleteBook(id string) error {
 	tx := s.db.Begin()
 	defer tx.Rollback()
 
-	err := s.repository.BookRepository.DeleteBook(tx, id)
+	err := s.bookRepository.DeleteBook(tx, id)
 	if err != nil {
 		return err
 	}
