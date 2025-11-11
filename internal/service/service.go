@@ -8,6 +8,6 @@ type Service struct {
 
 func NewService(repository *repository.Repository) *Service {
 	return &Service{
-		BookService: NewBookService(repository),
+		BookService: NewBookService(repository.BookRepository),
 	}
 }
