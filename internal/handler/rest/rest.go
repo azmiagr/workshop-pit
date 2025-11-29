@@ -4,29 +4,38 @@ import (
 	"fmt"
 	"os"
 	"workshop-pit/internal/service"
+	"workshop-pit/pkg/middleware"
 
 	"github.com/gin-gonic/gin"
 )
 
 type Rest struct {
-	router  *gin.Engine
-	service *service.Service
+	router     *gin.Engine
+	service    *service.Service
+	middleware middleware.Interface
 }
 
-func NewRest(service *service.Service) *Rest {
+func NewRest(service *service.Service, middleware middleware.Interface) *Rest {
 	return &Rest{
-		router:  gin.Default(),
-		service: service,
+		router:     gin.Default(),
+		service:    service,
+		middleware: middleware,
 	}
 }
 
 func (r *Rest) MountEndpoint() {
 	baseURL := r.router.Group("/api/v1")
 
+	auth := baseURL.Group("/auth")
+	auth.POST("/register", r.RegisterUser)
+	auth.POST("/login", r.LoginUser)
+
+	baseURL.GET("/books", r.GetAllBooks)
+	baseURL.GET("/books/:id", r.GetBookByID)
+
 	book := baseURL.Group("/book")
-	book.GET("/get-all-books", r.GetAllBooks)
+	book.Use(r.middleware.AuthenticateUser)
 	book.POST("/create-book", r.CreateBook)
-	book.GET("/get-book-by-id/:id", r.GetBookByID)
 	book.PUT("/update-book/:id", r.UpdateBook)
 	book.DELETE("/delete-book/:id", r.DeleteBook)
 }

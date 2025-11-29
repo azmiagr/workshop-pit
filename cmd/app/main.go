@@ -5,8 +5,11 @@ import (
 	"workshop-pit/internal/handler/rest"
 	"workshop-pit/internal/repository"
 	"workshop-pit/internal/service"
+	"workshop-pit/pkg/bcrypt"
 	"workshop-pit/pkg/config"
 	"workshop-pit/pkg/database/mariadb"
+	"workshop-pit/pkg/jwt"
+	"workshop-pit/pkg/middleware"
 )
 
 func main() {
@@ -23,8 +26,11 @@ func main() {
 	}
 
 	repo := repository.NewRepository(db)
-	svc := service.NewService(repo)
-	r := rest.NewRest(svc)
+	bcrypt := bcrypt.Init()
+	jwt := jwt.Init()
+	svc := service.NewService(repo, bcrypt, jwt)
+	m := middleware.Init(svc, jwt)
+	r := rest.NewRest(svc, m)
 	r.MountEndpoint()
 	r.Run()
 }
